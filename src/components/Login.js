@@ -9,12 +9,10 @@ import { auth } from "../utils/firebase";
 import Header from "./Header";
 import { useDispatch } from "react-redux";
 import { adduser } from "../utils/userSlice";
-
 const Login = () => {
     const [isSigninForm, setIsSignInForm] = useState(true);
     const [errorMessage, setErrorMessage] = useState(null);
     const dispatch = useDispatch();
-
     const name = useRef(null);
     const email = useRef(null);
     const password = useRef(null);
@@ -41,7 +39,7 @@ const Login = () => {
                     }).catch((error) => {
                         setErrorMessage(error.message);
                     });
-                    console.log(user);
+                    // console.log(user);
                 })
                 .catch((error) => {
                     // const errorCode = error.code;
@@ -55,7 +53,7 @@ const Login = () => {
                 .then((userCredential) => {
                     // Signed in 
                     const user = userCredential.user;
-                    console.log(user);
+                    // console.log(user);
                 })
                 .catch((error) => {
                     // const errorCode = error.code;
