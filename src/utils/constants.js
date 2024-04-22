@@ -20,3 +20,4 @@ export const SUPPORTED_LANGUAGES = [
 
 ]
 
+export const OPENAI_KEY = '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';
