@@ -5,7 +5,7 @@ const language = {
     },
     hin: {
         search: 'खोज',
-        gptSearchPlaceholider: 'आज आप क्या देखना चाहेंगे?',
+        gptSearchPlaceholider: 'आज आप क्या देखना चाहेंगे? ',
     },
     kan: {
         search: 'ಹುಡುಕಿ',
