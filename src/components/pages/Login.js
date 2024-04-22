@@ -1,23 +1,25 @@
 import React, { useRef, useState } from "react";
-import { checkValidateData } from "../utils/validation";
+import { checkValidateData } from "../../utils/validation";
 import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
     updateProfile
 } from "firebase/auth";
-import { auth } from "../utils/firebase";
+import { auth } from "../../utils/firebase";
 import Header from "./Header";
 import { useDispatch } from "react-redux";
-import { adduser } from "../utils/userSlice";
-import { BG_URL } from "../utils/constants";
+import { adduser } from "../store/userSlice";
+import { BG_URL } from "../../utils/constants";
 
 const Login = () => {
     const [isSigninForm, setIsSignInForm] = useState(true);
     const [errorMessage, setErrorMessage] = useState(null);
     const dispatch = useDispatch();
+
     const name = useRef(null);
     const email = useRef(null);
     const password = useRef(null);
+
     // Form validation
     const handleValidationBtn = () => {
         // console.log(email.current.value);
@@ -26,6 +28,7 @@ const Login = () => {
         const message = checkValidateData(email.current.value, password.current.value);
         setErrorMessage(message);
         if (message) return;
+
         if (!isSigninForm) {
             // Sign up logic
             createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
@@ -34,6 +37,7 @@ const Login = () => {
                     const user = userCredential.user;
                     updateProfile(user, {
                         displayName: name.current.value
+
                     }).then(() => {
                         // Profile updated!
                         const { uid, email, displayName } = auth.currentUser;
@@ -65,6 +69,7 @@ const Login = () => {
                 });
         }
     };
+
     const toggleSigninForm = () => {
         setIsSignInForm(!isSigninForm)
     }
@@ -120,4 +125,5 @@ const Login = () => {
         </div>
     );
 };
+
 export default Login;
