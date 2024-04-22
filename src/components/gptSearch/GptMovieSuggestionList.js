@@ -1,23 +1,25 @@
-import React from 'react';
-import MovieCard from '../secondaryContainer/MovieCard';
-import '../secondaryContainer/MovieList.css';
+import React from 'react'
+import { useSelector } from 'react-redux';
+import GptMovieSuggestionList from './GptMovieSuggestionList';
 
-const GptMovieSuggestionList = ({ title, movies }) => {
+const GptMovieSuggestion = () => {
+    const gpt = useSelector(store => store.gpt)
+    const { movieNames, movieResults } = gpt;
+    if (!movieNames) return null;
+
     return (
-        <div className='py-1 p-4 bg-black w-scree  bg-opacity-60'>
-            <h1 className='md:text-2xl font-semibold p-2 text-2xl text-white'>{title}</h1>
-            <div className='flex p-2 flex-row overflow-x-scroll overflow-hidden scrollbar'>
-                <div className='flex'>
-                    {movies && movies.length > 0 ? (
-                        movies.map((movie, index) => (
-                            <MovieCard id={movie?.id} posterPath={movie?.backdrop_path} key={index} title={movie?.original_title} />
-                        ))
-                    ) : (
-                        <p className='text-white text-lg'>No movies to display</p>
-                    )}
-                </div>
+        <div>
+            <div>
+                <h2 className='text-xl md:text-2xl text-white px-8 font-semibold md:font-bold'>Results</h2>
+                {movieNames.map((movieNames, index) =>
+                    <GptMovieSuggestionList
+                        key={movieNames[0]}
+                        // title={movieNames[0]}
+                        movies={movieResults[index]} />
+                )}
             </div>
         </div>
     );
 };
-export default GptMovieSuggestionList;
+
+export default GptMovieSuggestion
