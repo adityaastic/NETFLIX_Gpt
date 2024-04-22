@@ -21,11 +21,9 @@ const Browse = () => {
             {showGptSearch ? <GptSearchPage /> :
                 <>
                     <MainContainer />
-                    <SecondaryContainer />
+                    <SecondaryContainer/>
                 </>
             }
-
-
         </div>
     );
 };
