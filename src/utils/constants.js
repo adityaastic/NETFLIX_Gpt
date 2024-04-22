@@ -20,4 +20,3 @@ export const SUPPORTED_LANGUAGES = [
 
 ]
 
-export const OPENAI_KEY = leaving this for kry ??;
